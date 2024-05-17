@@ -31,7 +31,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
           labelTextStyle: MaterialStateProperty.all(TextStyle(fontSize: 15,fontWeight: FontWeight.w500))
         ),
         child: NavigationBar(
-          height: 70,
+          height: 60,
             selectedIndex: index,
             onDestinationSelected: (index) => setState(() => this.index = index),
             destinations: const [
