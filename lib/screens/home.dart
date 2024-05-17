@@ -5,6 +5,7 @@ import 'package:plants/screens/order.dart';
 import 'package:plants/widgets/bottomNavigation.dart';
 import 'package:plants/widgets/drawer.dart';
 import 'package:plants/widgets/inkwell.dart';
+import 'package:plants/widgets/popupMenu.dart';
 import 'package:plants/widgets/search.dart';
 
 class HomeView extends StatefulWidget {
@@ -27,12 +28,14 @@ class _HomeViewState extends State<HomeView> {
             key: _key,
             drawer: CustomDrawer(),
             appBar: AppBar(
+
                   title: Container(
                       height: 100,
                       width: 100,
                       child: Image.asset('images/Logo.png',fit: BoxFit.contain)),
                   actions: <Widget>[
                     IconButton(onPressed: (){Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  OrderRecieved()));}, icon: Icon(Icons.notification_add)),
+                    Popup(),
                     // IconButton(onPressed: ()=> _key.currentState!.openDrawer(), icon: Icon(Icons.drag_handle_outlined)),
                   ],
                 ),

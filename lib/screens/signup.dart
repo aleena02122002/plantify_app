@@ -11,6 +11,9 @@ class SignUpView extends StatelessWidget {
   FocusNode _focusNode1 = FocusNode();
   FocusNode _focusNode2 = FocusNode();
 
+  RegExp userEmail = RegExp(r'^[a-zA-Z0-9._]+@[a-zA-Z0-9]+\.[a-zA-Z]+');
+
+
   registerUser(context) async {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -63,11 +66,11 @@ class SignUpView extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                MyTextField(hintText: 'Email', controller: emailController, prefixIcon: Icons.email_rounded, focusNode: _focusNode1),
+                MyTextField(hintText: 'Email', controller: emailController, prefixIcon: Icons.email_rounded, focusNode: _focusNode1,),
                 const SizedBox(
                   height: 10,
                 ),
-                MyTextField(hintText: 'Password', controller: passwordController, prefixIcon: Icons.lock, focusNode: _focusNode2),
+                MyTextField(hintText: 'Password', controller: passwordController, prefixIcon: Icons.lock, focusNode: _focusNode2,),
                 Align(
                     alignment: Alignment.bottomRight,
                     child: TextButton(

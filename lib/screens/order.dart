@@ -14,8 +14,6 @@ class OrderRecieved extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          MyTextField(hintText: "Email", controller: emailController, prefixIcon: Icons.email_rounded, focusNode: _focusNode1),
-          MyTextField(hintText: 'Password', controller: passwordController, prefixIcon: Icons.lock, focusNode: _focusNode2)
         ],
       ),
     );
