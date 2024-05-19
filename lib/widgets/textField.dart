@@ -7,9 +7,10 @@ class MyTextField extends StatefulWidget {
   final TextEditingController controller;
   final IconData? prefixIcon;
   final FocusNode? focusNode;
+  final String? Function(String?)? validator;
 
 
-  const MyTextField({Key? key, required this.hintText, required this.controller, required this.prefixIcon, required this.focusNode,})
+  const MyTextField({Key? key, required this.hintText, required this.controller, required this.prefixIcon, required this.focusNode,required this.validator})
       : super(key: key);
 
   @override
@@ -25,6 +26,8 @@ class _MyTextFieldState extends State<MyTextField> {
           cursorColor: const Color(0xFF0D986A),
           focusNode: widget.focusNode,
           controller: widget.controller,
+          validator: widget.validator,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           decoration: InputDecoration(
             labelText: widget.hintText,
             prefixIcon: widget.prefixIcon != null ? Icon(widget.prefixIcon) : null,

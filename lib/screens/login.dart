@@ -7,8 +7,6 @@ import 'package:plants/screens/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:plants/widgets/textField.dart';
 
-
-
 class LoginView extends StatelessWidget {
   LoginView({super.key});
   final emailController = TextEditingController();
@@ -17,8 +15,26 @@ class LoginView extends StatelessWidget {
   FocusNode _focusNode1 = FocusNode();
   FocusNode _focusNode2 = FocusNode();
 
+  final RegExp userEmail =
+      RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
 
+  String? emailError(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Fill this field';
+    } else if (!userEmail.hasMatch(value)) {
+      return 'Invalid Email';
+    }
+    return null;
+  }
 
+  String? passwordError(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Fill this field';
+    } else if (value.length < 5) {
+      return 'Password must be at least 5 characters long';
+    }
+    return null;
+  }
 
   loginUser(context) async {
     try {
@@ -49,63 +65,65 @@ class LoginView extends StatelessWidget {
       resizeToAvoidBottomInset: true,
       body: SafeArea(
           child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                child: const Align(
-                    alignment: Alignment.topLeft,
-                    child: Image(
-                        image: AssetImage('images/Logo.png'),
-                        fit: BoxFit.contain,
-                        width: 200,
-                        height: 200)),
-              ),
-              const Text(
-                "Login",
-                style: TextStyle(
-                    color: Color(0xFF0D986A),
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              MyTextField(
-                hintText: 'Email',
-                controller: emailController,
-                prefixIcon: Icons.email_rounded,
-                focusNode: _focusNode1,
-
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              MyTextField(
-                hintText: "Password",
-                controller: passwordController,
-                prefixIcon: Icons.lock,
-                focusNode: _focusNode2,
-
-              ),
-              Align(
-                  alignment: Alignment.bottomRight,
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => SignUpView()));
-                    },
-                    child: const Text(
-                      "Don't Have an Account yet?",
-                      style: TextStyle(
-                          color: Color(0xFF0D986A),
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  )),
-              const SizedBox(height: 40),
-              ElevatedButton(
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+              child: const Align(
+                  alignment: Alignment.topLeft,
+                  child: Image(
+                      image: AssetImage('images/Logo.png'),
+                      fit: BoxFit.contain,
+                      width: 200,
+                      height: 200)),
+            ),
+            const Text(
+              "Login",
+              style: TextStyle(
+                  color: Color(0xFF0D986A),
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            MyTextField(
+              hintText: 'Email',
+              controller: emailController,
+              prefixIcon: Icons.email_rounded,
+              focusNode: _focusNode1,
+              validator: (value) => emailError(value),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            MyTextField(
+              hintText: "Password",
+              controller: passwordController,
+              prefixIcon: Icons.lock,
+              focusNode: _focusNode2,
+              validator: (value) => passwordError(value),
+            ),
+            Align(
+                alignment: Alignment.bottomRight,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => SignUpView()));
+                  },
+                  child: const Text(
+                    "Don't Have an Account yet?",
+                    style: TextStyle(
+                        color: Color(0xFF0D986A),
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold),
+                  ),
+                )),
+            const SizedBox(height: 40),
+            SizedBox(
+              height: 40,
+              width: 200,
+              child: ElevatedButton(
                   onPressed: () {
                     loginUser(context);
                   },
@@ -120,9 +138,9 @@ class LoginView extends StatelessWidget {
                       backgroundColor: const Color(0xFF0D986A),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0)))),
-            ],
-          ),
-
+            ),
+          ],
+        ),
       )),
     );
   }
