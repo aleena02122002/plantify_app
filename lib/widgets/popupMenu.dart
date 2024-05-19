@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:plants/screens/login.dart';
 import 'package:plants/screens/logout.dart';
 import 'package:plants/screens/profile.dart';
-import 'package:plants/screens/profile.dart';
 import 'package:plants/screens/setting.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Popup extends StatelessWidget {
    Popup({super.key});
@@ -10,6 +11,14 @@ class Popup extends StatelessWidget {
    final menu1 = Setting();
    final menu2 = MyProfile();
    final menu3 = LogoutView();
+
+   void signOut(BuildContext context) async {
+     await FirebaseAuth.instance.signOut();
+     Navigator.pushReplacement(
+       context,
+       MaterialPageRoute(builder: (context) => LoginView()),
+     );
+   }
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +40,9 @@ class Popup extends StatelessWidget {
           PopupMenuItem(
             child: Text('LogOut'),
             value: menu3,
+            onTap: (){
+              signOut(context);
+            },
           ),
         ],
     );
