@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:plants/screens/order.dart';
 import 'package:plants/widgets/bottomNavigation.dart';
 import 'package:plants/widgets/drawer.dart';
+import 'package:plants/widgets/homeWidgets/home_widgets.dart';
 import 'package:plants/widgets/inkwell.dart';
 import 'package:plants/widgets/popupMenu.dart';
 import 'package:plants/widgets/rowWidget.dart';
@@ -121,6 +122,7 @@ class _HomeViewState extends State<HomeView> {
                       )
                     ],
                   )),
+              PlantCard(text: 'Bird’s Nest Fern', color: Color(0xFF002140), num: '400', mainImage: Image.asset('images/greenRac.png'), overlayImage: Image.asset('images/img.png'))
             ],
           )),
         ),

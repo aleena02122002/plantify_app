@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plants/widgets/buttons/liked_button.dart';
 
 class CustomInkWell extends StatelessWidget {
   final Widget child;
@@ -8,11 +9,19 @@ class CustomInkWell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Stack(
+    return Container(
+
+      child: Column(
         children: [
-          child,
+          Favorite(isLiked: true, onTap: (){}),
+          InkWell(
+            onTap: onTap,
+            child: Stack(
+              children: [
+                child,
+              ],
+            ),
+          ),
         ],
       ),
     );
