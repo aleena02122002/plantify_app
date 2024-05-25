@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:plants/firebase_options.dart';
+import 'package:plants/screens/homePage.dart';
 import 'package:plants/screens/profile.dart';
 import 'package:plants/screens/splash.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyProfile(),
+      home: HomePage(),
     );
   }
 }

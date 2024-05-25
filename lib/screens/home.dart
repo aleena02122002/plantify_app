@@ -6,6 +6,7 @@ import 'package:plants/widgets/bottomNavigation.dart';
 import 'package:plants/widgets/drawer.dart';
 import 'package:plants/widgets/inkwell.dart';
 import 'package:plants/widgets/popupMenu.dart';
+import 'package:plants/widgets/rowWidget.dart';
 import 'package:plants/widgets/search.dart';
 
 class HomeView extends StatefulWidget {
@@ -60,15 +61,16 @@ class _HomeViewState extends State<HomeView> {
               const SizedBox(
                 height: 10,
               ),
-              SizedBox(
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    'images/Frame 95.png',
-                    width: 300,
-                  ),
-                ),
-              ),
+              RowWidget(),
+              // SizedBox(
+              //   child: Align(
+              //     alignment: Alignment.center,
+              //     child: Image.asset(
+              //       'images/Frame 95.png',
+              //       width: 300,
+              //     ),
+              //   ),
+              // ),
               const SizedBox(
                 height: 15,
               ),
